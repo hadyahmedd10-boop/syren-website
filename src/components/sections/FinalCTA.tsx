@@ -4,37 +4,48 @@ export default function FinalCTA() {
   return (
     <section
       aria-labelledby="final-cta-title"
-      className="relative border-t border-black/5 dark:border-white/10 bg-gradient-to-b from-[#141414] via-[#101010] to-[#0b0b0b]"
+      className="relative border-t border-border bg-gradient-to-b from-surface via-surface to-background py-12 md:py-16"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.06),transparent_60%)]" />
-      <div className="relative mx-auto max-w-6xl px-6 md:px-8 min-h-[65svh] py-24 md:py-40 flex items-center justify-center">
-        <div className="text-center">
-          <Reveal>
-            <h2
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--color-border),transparent_60%)]" />
+      
+      <div className="mx-auto max-w-7xl px-6 md:px-8 text-center relative z-10">
+        <Reveal>
+          <div className="flex flex-col items-center">
+            <span className="font-sans text-[10px] md:text-xs font-bold uppercase tracking-[0.5em] text-accent-gold mb-5">
+              The Journey Continues
+            </span>
+            <h2 
               id="final-cta-title"
-              className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight text-white"
+              className="font-serif text-3xl md:text-5xl lg:text-6xl tracking-tight text-primary leading-[1.1]"
             >
-              Your Egyptian Story Starts Here
+              The Egypt You&apos;ve <br className="hidden md:block" /> Always Imagined.
             </h2>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="mt-6 font-sans text-base md:text-lg lg:text-xl text-white/85 max-w-2xl mx-auto">
-              Connect with our curators to begin designing a journey tailored to you.
+            <p className="mt-6 font-sans text-[13px] md:text-sm lg:text-base text-white/60 max-w-xl mx-auto leading-relaxed">
+              Private access. Master curators. Unforgettable moments. <br className="hidden md:block" />
+              Let us design your personal odyssey.
             </p>
-          </Reveal>
-          <Reveal delay={0.4} y={20}>
-            <a
-              href="https://wa.me/201000000000?text=I%20want%20to%20plan%20my%20trip%20to%20Egypt%20with%20Syren"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Plan my trip via WhatsApp"
-              className="mt-10 inline-flex items-center justify-center rounded-full bg-[#D4AF37] px-10 py-4.5 text-base md:text-lg font-sans font-medium text-black shadow-[0_4px_16px_rgba(212,175,55,0.28)] transition-transform duration-300 ease-out hover:bg-[#C9A233] hover:scale-[1.02] hover:shadow-[0_6px_24px_rgba(212,175,55,0.36)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b0b]"
-            >
-              Plan My Trip
-            </a>
-          </Reveal>
-        </div>
+            
+            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto">
+              <a 
+                href="https://wa.me/201000000000?text=I%20want%20to%20plan%20my%20journey%20with%20Syren"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="syren-btn w-full sm:min-w-[240px]"
+              >
+                PLAN YOUR JOURNEY
+              </a>
+              <a 
+                href="/experiences"
+                className="syren-btn-secondary w-full sm:min-w-[240px]"
+              >
+                View Experiences
+              </a>
+            </div>
+          </div>
+        </Reveal>
       </div>
+
+      <div className="mt-24 h-px w-full bg-gradient-to-r from-transparent via-accent-gold/30 to-transparent" />
     </section>
   );
 }

@@ -29,23 +29,24 @@ export default function PopularExperiences() {
   return (
     <section
       id="experiences"
-      aria-labelledby="popular-experiences-title"
-      className="bg-gradient-to-b from-[#f6f3ee] to-white dark:from-[#0b0b0b] dark:to-[#121212] border-t border-black/5 dark:border-white/10 scroll-mt-24"
+      className="bg-background border-t border-border scroll-mt-24 py-12 md:py-16"
     >
-      <div className="mx-auto max-w-6xl px-6 md:px-8 py-20 md:py-28">
+      <div className="mx-auto max-w-6xl px-6 md:px-8">
         <Reveal>
-          <div className="mb-10 md:mb-14">
+          <div className="text-center mb-8 md:mb-12">
+            <span className="block font-sans text-[9px] uppercase tracking-[0.4em] text-accent-gold mb-3">The Action</span>
             <h2
               id="popular-experiences-title"
-              className="font-serif text-4xl md:text-5xl tracking-tight text-zinc-900 dark:text-zinc-50"
+              className="font-serif text-3xl md:text-4xl tracking-tight text-primary"
             >
-              Signature Experiences
+              Curated Experiences
             </h2>
+            <div className="mx-auto mt-6 h-px w-16 bg-accent-gold/40" />
           </div>
         </Reveal>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:gap-10">
           {items.map((item, index) => (
-            <Reveal key={item.title} delay={0.1 * (index + 1)}>
+            <Reveal key={item.title} delay={0.2 * (index + 1)}>
               <ExperienceCard
                 title={item.title}
                 description={item.description}

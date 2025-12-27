@@ -1,0 +1,403 @@
+import { Experience } from "@/types/experience";
+import heroImg from "../../public/Images/hero.jpg";
+import luxuryImg from "../../public/Images/luxury.jpg";
+import partyImg from "../../public/Images/party.jpg";
+
+export const experiences: Experience[] = [
+  {
+    slug: "5-day-cairo-experience",
+    title: "5-Day Cairo Experience",
+    subtitle: "Ancient Wonders & Timeless Culture",
+    duration: "5 Days / 4 Nights",
+    cities: "Cairo",
+    description: "A deep cultural journey through Egypt’s ancient landmarks, museums, and historic neighborhoods — designed for comfort, insight, and authentic discovery.",
+    introduction: "Cairo is more than a city; it is a living chronicle of human civilization. Our 5-day curated experience invites you to step beyond the veil of time, offering exclusive access to the monuments and moments that have shaped the world, all while enveloped in the refined comfort of modern luxury.",
+    heroImage: heroImg,
+    whatsappMessage: "I am interested in the 5-Day Cairo Experience",
+    highlights: [
+      "After-hours private access to the Grand Egyptian Museum",
+      "Sunrise meditation at the Great Pyramid of Giza",
+      "Exclusive guided tour of the Sphinx enclosure",
+      "Artisan-led exploration of Islamic Cairo's hidden workshops",
+      "Private Felucca sunset sail on the Nile"
+    ],
+    included: [
+      "Private guided tours with expert Egyptologists",
+      "4 nights luxury accommodation in Cairo",
+      "All airport transfers in private A/C vehicles",
+      "Select meals as specified in the itinerary",
+      "24/7 dedicated local support & concierge",
+      "Entry fees to all mentioned historical sites"
+    ],
+    notIncluded: [
+      "International airfare",
+      "Entry visa to Egypt",
+      "Personal expenses and gratuities",
+      "Optional activities and spa treatments"
+    ],
+    price: {
+      amount: 2450,
+      currency: "USD",
+      perPerson: true
+    },
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival & The Grand Egyptian Museum",
+        description: "Arrive at Cairo International Airport where your private host awaits. After a seamless VIP entry, transfer to your luxury residence overlooking the Nile. In the afternoon, enjoy a private, after-hours preview of the Grand Egyptian Museum, followed by a welcome dinner featuring contemporary Egyptian cuisine.",
+        meals: "Dinner",
+        image: luxuryImg
+      },
+      {
+        day: 2,
+        title: "Giza Plateau & The Sphinx",
+        description: "Experience the Great Pyramids like never before. Start with a sunrise meditation at the base of Khufu's pyramid, followed by exclusive access to the Sphinx enclosure. Enjoy a gourmet picnic lunch on the plateau before exploring the Solar Boat Museum. The evening is yours to relax or enjoy a private jazz performance.",
+        meals: "Breakfast, Lunch",
+        image: heroImg
+      },
+      {
+        day: 3,
+        title: "Islamic Cairo & Hidden Alleys",
+        description: "Dive into the heart of historic Cairo. Visit the Citadel of Saladin and the Mosque of Muhammad Ali. Wander through the enchanting Khan el-Khalili bazaar with a local artisan who will guide you to hidden workshops and secret rooftop tea houses. Dinner is served in a restored 19th-century mansion.",
+        meals: "Breakfast, Dinner",
+        image: partyImg
+      },
+      {
+        day: 4,
+        title: "Coptic Heritage & The Nile at Sunset",
+        description: "Explore the serene atmosphere of Old Cairo, including the Hanging Church and the Ben Ezra Synagogue. After a light lunch, board a private, traditionally-styled Felucca for a sunset sail on the Nile. Sip on local hibiscus tea as the city lights begin to flicker against the twilight sky.",
+        meals: "Breakfast, Lunch",
+        image: luxuryImg
+      },
+      {
+        day: 5,
+        title: "Modern Cairo & Departure",
+        description: "Spend your final morning exploring the sophisticated boutiques and galleries of Zamalek. Enjoy a farewell brunch at a riverside garden before your private chauffeur transfers you to the airport for your departure, leaving with memories that will last a lifetime.",
+        meals: "Breakfast, Brunch",
+        image: partyImg
+      }
+    ]
+  },
+  {
+    slug: "8-day-pyramids-nile-cruise",
+    title: "8-Day Pyramids & Nile Cruise Journey",
+    subtitle: "Legends of the Pharaohs",
+    duration: "8 Days / 7 Nights",
+    cities: "Cairo, Luxor, Aswan",
+    description: "An unforgettable journey combining Cairo’s iconic pyramids with a luxury Nile cruise through Upper Egypt’s most legendary temples.",
+    introduction: "Experience the full majesty of Ancient Egypt. From the towering pyramids of Giza to the sun-drenched temples of Luxor and Aswan, this 8-day odyssey blends world-class archeology with the serene beauty of a private Nile cruise.",
+    heroImage: luxuryImg,
+    whatsappMessage: "I am interested in the 8-Day Pyramids & Nile Cruise Journey",
+    highlights: [
+      "Luxury 5-star Nile Cruise between Luxor and Aswan",
+      "Private Egyptologist for all site visits",
+      "Sunset tour of the unique Kom Ombo double temple",
+      "VIP access to the Valley of the Kings tombs",
+      "Domestic flights included for maximum comfort"
+    ],
+    included: [
+      "Private guided tours with expert Egyptologists",
+      "Luxury hotel & 5-star Nile cruise accommodation",
+      "Domestic flights (Cairo-Luxor & Aswan-Cairo)",
+      "All transfers in private A/C vehicles",
+      "Most meals as specified in the itinerary",
+      "24/7 dedicated local support & concierge",
+      "Entry fees to all mentioned historical sites"
+    ],
+    notIncluded: [
+      "International airfare",
+      "Entry visa to Egypt",
+      "Personal expenses and gratuities",
+      "Optional visit to Abu Simbel (available as add-on)"
+    ],
+    price: {
+      amount: 3850,
+      currency: "USD",
+      perPerson: true
+    },
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival in Cairo",
+        description: "Your Egyptian story begins with a private greeting at the airport and transfer to your luxury hotel with Pyramids views.",
+        meals: "Dinner",
+        image: heroImg
+      },
+      {
+        day: 2,
+        title: "The Pyramids & Memphis",
+        description: "Explore the Giza Plateau, the Great Sphinx, and the ancient capital of Memphis with your private Egyptologist.",
+        meals: "Breakfast, Lunch",
+        image: luxuryImg
+      },
+      {
+        day: 3,
+        title: "Fly to Luxor & Embarkation",
+        description: "Fly to Luxor and board your luxury Nile cruiser. In the afternoon, visit the magnificent Karnak and Luxor Temples.",
+        meals: "Breakfast, Lunch, Dinner",
+        image: partyImg
+      },
+      {
+        day: 4,
+        title: "Valley of the Kings",
+        description: "Cross to the West Bank to discover the Valley of the Kings, the Temple of Hatshepsut, and the Colossi of Memnon.",
+        meals: "Breakfast, Lunch, Dinner",
+        image: luxuryImg
+      },
+      {
+        day: 5,
+        title: "Edfu & Kom Ombo Temples",
+        description: "Sail south to Edfu to visit the Temple of Horus, then continue to the unique double temple of Kom Ombo at sunset.",
+        meals: "Breakfast, Lunch, Dinner",
+        image: heroImg
+      },
+      {
+        day: 6,
+        title: "Aswan & Philae Temple",
+        description: "Arrive in Aswan. Visit the beautiful Philae Temple, the Unfinished Obelisk, and the High Dam.",
+        meals: "Breakfast, Lunch, Dinner",
+        image: partyImg
+      },
+      {
+        day: 7,
+        title: "Abu Simbel (Optional) & Fly back to Cairo",
+        description: "Optional early morning visit to the breathtaking Abu Simbel temples. Fly back to Cairo for a final farewell dinner.",
+        meals: "Breakfast, Dinner",
+        image: luxuryImg
+      },
+      {
+        day: 8,
+        title: "Final Departure",
+        description: "Enjoy a final Egyptian breakfast before your private transfer to Cairo International Airport.",
+        meals: "Breakfast",
+        image: heroImg
+      }
+    ]
+  },
+  {
+    slug: "10-day-cairo-nile-red-sea-odyssey",
+    title: "10-Day Cairo, Nile & Red Sea Odyssey",
+    subtitle: "From the Pyramids to the Turquoise Coast",
+    duration: "10 Days / 9 Nights",
+    cities: "Cairo, Aswan, Luxor, Hurghada",
+    description: "A comprehensive 10-day journey across Egypt's most iconic landscapes—from the ancient majesty of Cairo and the Nile to the sun-drenched shores of the Red Sea.",
+    introduction: "Egypt is a land of contrasts, where the echoes of ancient civilizations meet the serene beauty of the coast. This 10-day odyssey is thoughtfully designed to offer a complete immersion into the heart of Egypt. You will stand before the Great Pyramids, sail the timeless Nile, explore the legendary temples of the south, and finally, find sanctuary on the crystalline shores of Hurghada. Every detail, from the VIP meet-and-greet to the private transfers, is handled with the care and soul that defines Syren.",
+    heroImage: heroImg,
+    whatsappMessage: "I am interested in the 10-Day Cairo, Nile & Red Sea Odyssey",
+    highlights: [
+      "Full spectrum of Egypt: History, Nile, and Red Sea",
+      "Overnight sleeper train experience for authentic travel",
+      "Breathtaking mountain temples of Abu Simbel",
+      "3 days of pure relaxation on Hurghada's turquoise coast",
+      "Comprehensive private logistics for a stress-free journey"
+    ],
+    included: [
+      "Personal meet & greet at Cairo International Airport",
+      "9 nights accommodation in luxury & 5-star hotels",
+      "All transfers in private, air-conditioned vehicles",
+      "Overnight sleeper train from Cairo to Aswan (Dinner & Breakfast included)",
+      "Private guided tours with expert Egyptologists",
+      "Entrance fees to all mentioned historical sites",
+      "Domestic travel from Hurghada to Cairo",
+      "24/7 dedicated local support & concierge"
+    ],
+    notIncluded: [
+      "International airfare",
+      "Entry visa to Egypt",
+      "Optional activities in Hurghada (Snorkeling, Sailing, etc.)",
+      "Personal expenses and gratuities"
+    ],
+    price: {
+      amount: 4200,
+      currency: "USD",
+      perPerson: true
+    },
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival in Cairo",
+        description: "Your journey begins with a seamless arrival. Our team will meet you at the airport, assist with luggage, and transfer you to your hotel. After an uneventful check-in, enjoy a complimentary welcome drink while we discuss your upcoming itinerary. The rest of the day is yours to relax and prepare for the adventure ahead.",
+        meals: "Welcome Drink",
+        image: luxuryImg
+      },
+      {
+        day: 2,
+        title: "The Giza Plateau & Sleeper Train",
+        description: "Begin with the Giza Plateau, home to the Great Pyramids and the Sphinx. After an authentic Egyptian lunch, explore the New Grand Egyptian Museum in a special preview experience. As evening falls, board your overnight sleeper train to Aswan, enjoying dinner as the landscapes of the Nile valley pass by.",
+        meals: "Breakfast, Lunch, Dinner",
+        image: heroImg
+      },
+      {
+        day: 3,
+        title: "Aswan’s Ancient Treasures",
+        description: "Arrive in Aswan and dive straight into history at the Unfinished Obelisk, the largest piece of stonework ever constructed. Continue to the romantic Temple of Philae, dedicated to the goddess Isis. Spend the night in Aswan, soaking in the serene atmosphere of the Nile’s most beautiful city.",
+        meals: "Breakfast, Lunch",
+        image: partyImg
+      },
+      {
+        day: 4,
+        title: "The Majesty of Abu Simbel",
+        description: "A private 3.5-hour drive brings you to the breathtaking Temples of Abu Simbel. Stand in awe before the massive statues of Ramses II and Nefertari, carved directly into the mountain. Return to Aswan in the afternoon for another comfortable evening by the water.",
+        meals: "Breakfast",
+        image: luxuryImg
+      },
+      {
+        day: 5,
+        title: "The Valley of the Kings",
+        description: "Journey to Luxor, the world's greatest open-air museum. Explore the notorious Valley of the Kings, the Temple of Hatshepsut, and the Colossi of Memnon. Each site tells a story of power, faith, and the eternal quest for immortality. Transfer to your Luxor hotel for the night.",
+        meals: "Breakfast, Lunch",
+        image: heroImg
+      },
+      {
+        day: 6,
+        title: "Karnak, Luxor & The Red Sea",
+        description: "Discover the immense Karnak Temple Complex and the elegant Luxor Temple. After your final exploration of the south, we drive you in a private vehicle to Hurghada. Arrive at your coastal resort and settle in for a well-deserved escape to the Red Sea.",
+        meals: "Breakfast",
+        image: partyImg
+      },
+      {
+        day: 7,
+        title: "Red Sea Relaxation",
+        description: "A free day in Hurghada to nourish your mind, body, and soul. Relax at the resort, swim in the turquoise waters of the Red Sea, or choose from optional activities like snorkeling or windsurfing. The day is entirely yours.",
+        meals: "Breakfast",
+        image: luxuryImg
+      },
+      {
+        day: 8,
+        title: "Sun, Sand & Sailing",
+        description: "Another day of coastal bliss. Take advantage of Hurghada's world-class sailing or deep-sea fishing, or simply enjoy the refined amenities of your resort. Another evening to watch the sun set over the crystalline horizon.",
+        meals: "Breakfast",
+        image: heroImg
+      },
+      {
+        day: 9,
+        title: "Return to Cairo",
+        description: "After a final breakfast by the sea, transfer back to Cairo. Enjoy some free time in the capital before your last night in a luxury hotel. Reflect on your journey through the heart of Egypt as the city lights begin to flicker.",
+        meals: "Breakfast",
+        image: partyImg
+      },
+      {
+        day: 10,
+        title: "Farewell Egypt",
+        description: "Wake up to a final 5-star breakfast before your private transfer to Cairo International Airport. Our staff will assist you with your luggage as you bid farewell to the land of the Pharaohs, taking with you memories that will last a lifetime.",
+        meals: "Breakfast",
+        image: luxuryImg
+      }
+    ]
+  },
+  {
+    slug: "12-day-egyptian-honeymoon-odyssey",
+    title: "12-Day Egyptian Honeymoon Odyssey",
+    subtitle: "Romance, History & The Red Sea",
+    duration: "12 Days / 11 Nights",
+    cities: "Cairo, Aswan, Nile Cruise, Luxor, Hurghada",
+    description: "An enchanting 12-day honeymoon blending the ancient wonders of Cairo and the Nile with the romantic serenity of the Red Sea.",
+    introduction: "Your honeymoon journey begins the moment you arrive in the enchanting land of Egypt. Designed for couples seeking a perfect balance of discovery and intimacy, this 12-day odyssey takes you from the shadows of the Great Pyramids to the crystalline shores of Hurghada. Every detail—from private guided tours to sunset sails on the Nile—is curated to ensure your first journey together is truly unforgettable.",
+    heroImage: luxuryImg,
+    whatsappMessage: "I am interested in the 12-Day Egyptian Honeymoon Odyssey",
+    included: [
+      "Personal meet & greet at Cairo International Airport",
+      "Domestic flights (Cairo-Aswan & Hurghada-Cairo)",
+      "4 nights luxury hotel in Cairo",
+      "1 night luxury hotel in Aswan",
+      "3 nights 5-star Nile Cruise",
+      "3 nights 5-star beach resort in Hurghada",
+      "Private guided tours with expert Egyptologists",
+      "All transfers in private A/C vehicles",
+      "Entrance fees to all mentioned historical sites",
+      "24/7 dedicated local support & concierge"
+    ],
+    notIncluded: [
+      "International airfare",
+      "Entry visa to Egypt",
+      "Optional activities (Diving, Snorkeling, etc.)",
+      "Personal expenses and gratuities"
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival & Romantic Welcome",
+        description: "Your journey begins with a warm welcome at Cairo Airport. Whisked away in a private vehicle to your luxury hotel, enjoy a briefing on your romantic itinerary before spending the evening at leisure in Cairo's vibrant atmosphere.",
+        meals: "Welcome Briefing",
+        image: luxuryImg
+      },
+      {
+        day: 2,
+        title: "Romance at the Giza Pyramids",
+        description: "Explore the Giza Plateau, the Great Sphinx, and the Valley Temple with your private guide. Later, visit the newly inaugurated Grand Egyptian Museum (GEM) before a relaxing evening together.",
+        meals: "Breakfast, Lunch",
+        image: heroImg
+      },
+      {
+        day: 3,
+        title: "National Museum & Old Cairo",
+        description: "Visit the National Museum of Egyptian Civilization to see the royal mummies. Explore the historic churches of Old Cairo and the magnificent Salah El-Din Citadel with panoramic city views.",
+        meals: "Breakfast, Lunch",
+        image: partyImg
+      },
+      {
+        day: 4,
+        title: "Aswan’s Wonders Await",
+        description: "Fly to Aswan and visit the romantic Temple of Philae, dedicated to Isis and Hathor, followed by the Unfinished Obelisk. Relax in your Aswan hotel overlooking the Nile.",
+        meals: "Breakfast",
+        image: luxuryImg
+      },
+      {
+        day: 5,
+        title: "Abu Simbel & Embarkation",
+        description: "Visit the awe-inspiring Abu Simbel Temples, built for Ramses II and Queen Nefertari. Return to Aswan to embark on your luxury Nile cruise for a sunset dinner.",
+        meals: "Breakfast, Lunch, Dinner",
+        image: heroImg
+      },
+      {
+        day: 6,
+        title: "Temples of Kom Ombo & Edfu",
+        description: "Sail to the unique double temple of Kom Ombo, then continue to Edfu to explore the well-preserved Temple of Horus. Enjoy afternoon tea as you sail toward Esna.",
+        meals: "Breakfast, Lunch, Dinner",
+        image: partyImg
+      },
+      {
+        day: 7,
+        title: "Luxor’s West Bank",
+        description: "Explore the Valley of the Kings and the Mortuary Temple of Queen Hatshepsut. A profound journey through the tombs of Egypt's ancient rulers.",
+        meals: "Breakfast, Lunch, Dinner",
+        image: luxuryImg
+      },
+      {
+        day: 8,
+        title: "Luxor’s East Bank & Red Sea",
+        description: "Visit Karnak and Luxor Temples before a private drive to the Red Sea resort of Hurghada. Check in to your luxury 5-star coastal hotel.",
+        meals: "Breakfast, Lunch",
+        image: heroImg
+      },
+      {
+        day: 9,
+        title: "Hurghada Relaxation",
+        description: "A day dedicated to relaxation. Enjoy the resort's amenities, swim in the turquoise waters, or choose an optional diving or snorkeling excursion.",
+        meals: "Breakfast",
+        image: luxuryImg
+      },
+      {
+        day: 10,
+        title: "Coastal Bliss",
+        description: "Cherish another day of coastal beauty. Whether sailing, fishing, or simply enjoying the beach, these moments are yours to enjoy together.",
+        meals: "Breakfast",
+        image: partyImg
+      },
+      {
+        day: 11,
+        title: "Return to Cairo",
+        description: "Free time in Hurghada before flying back to Cairo. Settle into a luxury hotel for your final night, with freedom to explore or relax.",
+        meals: "Breakfast",
+        image: luxuryImg
+      },
+      {
+        day: 12,
+        title: "Farewell to Egypt",
+        description: "Enjoy your final Egyptian breakfast before your private transfer to the airport. Depart with memories of a lifetime from the land of the Pharaohs.",
+        meals: "Breakfast",
+        image: heroImg
+      }
+    ]
+  }
+];

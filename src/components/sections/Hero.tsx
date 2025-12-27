@@ -22,14 +22,14 @@ export default function Hero() {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
-        ease: [0.21, 0.47, 0.32, 0.98] as const, // Custom cinematic ease
+        duration: 1.2,
+        ease: [0.22, 1, 0.36, 1], // Smoother cinematic ease (Expo Out)
       },
     },
   };
 
   return (
-    <section id="hero" aria-labelledby="hero-title" className="relative min-h-[100svh] w-full">
+    <section id="hero" className="relative min-h-screen flex items-center">
       <Image
         src={luxuryImg}
         alt="Luxury yacht in the Red Sea - Syren Egypt Experiences"
@@ -40,40 +40,60 @@ export default function Hero() {
         placeholder="blur"
         className="object-cover object-center"
       />
-      <div className="absolute inset-0 bg-black/50" />
-      <div className="absolute inset-0 flex items-center justify-center px-6">
-        <motion.div 
-          className="mx-auto w-full max-w-5xl text-center"
+      
+      {/* Cinematic Overlays */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/40 via-60% to-background" />
+      <div className="absolute inset-0 opacity-[0.03] bg-[url('/noise.png')] pointer-events-none" />
+      
+      <div className="relative mx-auto max-w-5xl px-6 text-center w-full z-10">
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          <motion.h1 
-            id="hero-title" 
+          {/* Editorial Brand Label */}
+          <motion.span 
             variants={itemVariants}
-            className="font-serif text-white text-4xl md:text-6xl lg:text-7xl tracking-tight"
-          >
-            Experience Egypt Beyond the Expected
-          </motion.h1>
+            className="block font-serif text-accent-gold tracking-[0.5em] text-[11px] md:text-[12px] uppercase mb-6 opacity-90"
+          > 
+            Syren
+          </motion.span> 
+      
+          {/* Powerful Short Headline */}
+          <motion.h1 
+            variants={itemVariants}
+            className="font-serif text-white text-3xl md:text-5xl lg:text-6xl leading-[1.05] mb-8 tracking-tight"
+          > 
+            Experience Egypt, <br className="hidden md:block" /> like never before! 
+          </motion.h1> 
+      
+          {/* Poetic sub-line */}
           <motion.p 
             variants={itemVariants}
-            className="mt-6 font-sans text-white/85 text-base md:text-lg lg:text-xl"
-          >
-            Luxury escapes, legendary parties, and hidden gems. Curated by locals, designed for the discerning.
+            className="text-white/70 max-w-xl mx-auto text-[14px] md:text-base font-light italic mb-12 leading-relaxed"
+          > 
+            Where luxury meets authenticity and every journey is curated for you
           </motion.p>
-          <motion.div variants={itemVariants}>
+
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <a
-              href="https://wa.me/201000000000?text=I%20want%20to%20plan%20my%20trip%20to%20Egypt%20with%20Syren"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Plan my trip via WhatsApp"
-              className="mt-8 inline-flex items-center justify-center rounded-full bg-[#D4AF37] px-7 py-3.5 text-base font-sans font-medium text-black shadow-sm transition-transform duration-300 ease-out hover:bg-[#C9A233] hover:scale-[1.02] hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              href="#destinations"
+              className="syren-btn min-w-[220px]"
             >
-              Plan my trip
+              Begin Your Journey
+            </a>
+            <a
+              href="/experiences"
+              className="syren-btn-secondary min-w-[220px]"
+            >
+              View Experiences
             </a>
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Section Bridge Fade */}
+      <div className="absolute bottom-0 left-0 w-full h-32 md:h-48 bg-gradient-to-t from-background via-background/80 to-transparent" />
     </section>
   );
 }

@@ -1,39 +1,236 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-background);
+  --foreground: var(--color-text-primary);
+
+  /* Backgrounds */ 
+  --color-background: #0B0F12;          /* Deep night */ 
+  --color-background-light: #12171C;    /* Section separation */ 
+  --color-surface: #151B21;             /* Cards */ 
+ 
+  /* Text */ 
+  --color-text-primary: #EAEAEA;        /* Main text */ 
+  --color-text-secondary: #9CA3AF;      /* Muted text */ 
+ 
+  /* Brand */ 
+  --color-primary: #CFAE70;              /* Soft gold */ 
+  --color-primary-dark: #B89B5F; 
+ 
+  /* Accents */ 
+  --color-accent-gold: #CFAE70; 
+  --color-border: rgba(255,255,255,0.08); 
+ 
+  /* Footer */ 
+  --color-footer: #080C0E; 
+
+  /* Functional mappings */
+  --color-text-dark: #0E1A1F;
+  --color-accent: var(--color-primary);
+  --color-accent-hover: var(--color-primary-dark);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--color-background);
+  --color-footer: var(--color-footer);
+  --color-background-light: var(--color-background-light);
+  --color-surface: var(--color-surface);
+  --color-blackbase: var(--color-footer);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-dark: var(--color-text-dark);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-accent-gold: var(--color-accent-gold);
+  --color-gold: var(--color-accent-gold);
+  --color-golddark: #B89B5F;
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-border: var(--color-border);
+
   --font-sans: var(--font-inter);
   --font-serif: var(--font-playfair);
+  
+  --animate-slow-zoom: slow-zoom 20s ease-in-out infinite alternate;
+
+  @keyframes slow-zoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.15); }
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-background: #0B0F12; 
+    --color-surface: #151B21; 
+    --color-footer: #080C0E; 
+ 
+    --color-text-primary: #EAEAEA; 
+    --color-text-secondary: #9CA3AF; 
+ 
+    --color-primary: #CFAE70; 
+    --color-primary-dark: #B89B5F; 
+ 
+    --color-accent-gold: #CFAE70; 
+    --color-border: rgba(255, 255, 255, 0.08); 
   }
+}
+
+.dark {
+  /* DARK MODE */ 
+  --color-background: #0B0F12; 
+  --color-surface: #151B21; 
+  --color-footer: #080C0E; 
+ 
+  --color-text-primary: #EAEAEA; 
+  --color-text-secondary: #9CA3AF; 
+ 
+  --color-primary: #CFAE70; 
+  --color-primary-dark: #B89B5F; 
+ 
+  --color-accent-gold: #CFAE70; 
+  --color-border: rgba(255, 255, 255, 0.08); 
 }
 
 html {
   scroll-behavior: smooth;
+  @apply bg-background;
+}
+
+section { 
+  scroll-margin-top: 6rem; 
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-inter), system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  @apply font-sans text-white antialiased;
 }
 
-h1, h2, h3, h4 {
-  font-family: var(--font-playfair), "Playfair Display", serif;
-  font-weight: 700;
-  line-height: 1.15;
-  color: var(--foreground);
+/* Custom Scrollbar for Luxury Feel */
+::-webkit-scrollbar {
+  width: 6px;
 }
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full transition-colors;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-accent-gold/40;
+}
+
+/* Form Elements - UI Foundations for Stripe/Checkout */
+input, textarea, select {
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  border-radius: 0.125rem; /* subtle radius */
+  padding: 0.75rem 1rem;
+  font-family: var(--font-inter);
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(15, 76, 92, 0.1);
+}
+
+label {
+  font-family: var(--font-inter);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.5;
+}
+
+h1 {
+  font-family: var(--font-playfair), serif;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--color-accent-gold);
+}
+
+h2 {
+  font-family: var(--font-playfair), serif;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--color-primary);
+}
+
+h3 {
+  font-family: var(--font-playfair), serif;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+}
+
+h4 {
+  font-family: var(--font-playfair), serif;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+}
+
+p, span, a, li, button, input, textarea {
+  font-family: var(--font-inter), sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === Syren Primary Button === */ 
+ .syren-btn { 
+    @apply 
+      inline-flex
+      items-center
+      justify-center
+      rounded-full 
+      px-8 py-4 
+      text-[11px] 
+      uppercase 
+      tracking-[0.4em] 
+      font-medium 
+      border 
+      border-white/40 
+      text-white 
+      bg-transparent
+      transition-all 
+      duration-500 
+      hover:bg-gold 
+      hover:border-gold 
+      hover:text-blackbase; 
+  }
+
+  /* === Syren Secondary Button === */
+  .syren-btn-secondary { 
+    @apply 
+      inline-flex
+      items-center
+      justify-center
+      rounded-full 
+      px-8 py-4 
+      text-[11px] 
+      uppercase 
+      tracking-[0.4em] 
+      text-white 
+      bg-transparent
+      border 
+      border-white/20 
+      hover:bg-gold 
+      hover:border-gold 
+      hover:text-blackbase 
+      transition-all 
+      duration-500; 
+  }
+
+

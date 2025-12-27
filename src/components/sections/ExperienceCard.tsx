@@ -1,49 +1,95 @@
 import Image, { type StaticImageData } from "next/image";
+import Link from "next/link";
 
 type Props = {
   title: string;
   description: string;
   image: StaticImageData | string;
   alt?: string;
+  duration?: string;
+  cities?: string;
+  buttonText?: string;
+  href?: string;
 };
 
-export default function ExperienceCard({ title, description, image, alt }: Props) {
+export default function ExperienceCard({
+  title,
+  description,
+  image,
+  alt,
+  duration,
+  cities,
+  buttonText = "Explore Journey",
+  href = "#",
+}: Props) {
   const isStatic = typeof image !== "string";
+  
   return (
-    <article className="group relative overflow-hidden rounded-2xl bg-white/90 shadow-sm ring-1 ring-black/5 transition-all duration-500 ease-[cubic-bezier(0.21,0.47,0.32,0.98)] hover:scale-[1.02] hover:shadow-xl">
-      <div className={`overflow-hidden ${isStatic ? "relative w-full" : "relative aspect-[4/3] w-full"}`}>
+    <article className="group relative flex h-full flex-col overflow-hidden bg-surface transition-all duration-500 ease-out border border-border hover:border-primary/30 hover:-translate-y-1">
+      {/* Image Container with Consistent Aspect Ratio */}
+      <div className="relative aspect-[16/10] w-full overflow-hidden">
         {isStatic ? (
           <Image
             src={image}
             alt={alt ?? title}
-            width={(image as StaticImageData).width}
-            height={(image as StaticImageData).height}
-            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-            className="w-full h-auto object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.21,0.47,0.32,0.98)] group-hover:scale-110"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
             priority={false}
-            quality={80}
+            quality={90}
             placeholder="blur"
           />
         ) : (
           <Image
-            src={image}
+            src={image as string}
             alt={alt ?? title}
             fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-            className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.21,0.47,0.32,0.98)] group-hover:scale-110"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
             priority={false}
-            quality={80}
+            quality={90}
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        
+        {/* Subtle Overlay */}
+        <div className="absolute inset-0 bg-black/20 transition-opacity duration-500 group-hover:bg-black/30" />
+        
+        {/* Floating Badge */}
+        {duration && (
+          <div className="absolute left-6 top-6 z-10">
+            <span className="bg-background/80 px-2.5 py-1 font-sans text-[9px] font-bold uppercase tracking-[0.2em] text-accent-gold backdrop-blur-md border border-accent-gold/20">
+              {duration}
+            </span>
+          </div>
+        )}
       </div>
-      <div className="flex flex-col gap-2 p-5">
-        <h3 className="font-serif text-xl md:text-2xl tracking-tight text-zinc-900 dark:text-zinc-50">
-          {title}
-        </h3>
-        <p className="font-sans text-sm md:text-base text-zinc-700 dark:text-zinc-300">
+      
+      <div className="flex flex-1 flex-col p-6 md:p-8">
+        <div className="mb-3 flex flex-col gap-1">
+          {cities && (
+            <span className="font-sans text-[9px] font-bold uppercase tracking-[0.3em] text-text-secondary">
+              {cities}
+            </span>
+          )}
+          <h3 className="font-serif text-2xl tracking-tight text-text-primary lg:text-3xl transition-colors duration-500">
+            {title}
+          </h3>
+        </div>
+
+        <p className="mb-8 flex-1 font-sans text-[13px] leading-relaxed text-white/60">
           {description}
         </p>
+        
+        <div className="mt-auto pt-5 border-t border-white/5">
+          <Link
+            href={href}
+            className="syren-btn-secondary w-full"
+          >
+            {buttonText}
+            {/* Stretched link to make entire card clickable */}
+            <span className="absolute inset-0 z-20" aria-hidden="true" />
+          </Link>
+        </div>
       </div>
     </article>
   );

@@ -1,0 +1,371 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import Reveal from "@/components/motion/Reveal";
+import { experiences } from "@/data/experiences";
+import { CheckCircle2, Star, ShieldCheck, ArrowRight, MessageSquare, CreditCard, Sparkles } from "lucide-react";
+
+interface Props {
+  params: Promise<{ slug: string }>;
+}
+
+export async function generateStaticParams() {
+  return experiences.map((exp) => ({
+    slug: exp.slug,
+  }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const experience = experiences.find((exp) => exp.slug === slug);
+
+  if (!experience) {
+    return {
+      title: "Experience Not Found | Syren",
+    };
+  }
+
+  const title = `${experience.title} | Syren - ${experience.subtitle || "Curated Egyptian Journeys"}`;
+  const description = experience.description;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `https://syren.com/experiences/${slug}`,
+      type: "article",
+      images: [
+        {
+          url: typeof experience.heroImage === "string" ? experience.heroImage : experience.heroImage.src,
+          width: 1200,
+          height: 630,
+          alt: experience.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [typeof experience.heroImage === "string" ? experience.heroImage : experience.heroImage.src],
+    },
+  };
+}
+
+export default async function ExperienceDetailPage({ params }: Props) {
+  const { slug } = await params;
+  const experience = experiences.find((exp) => exp.slug === slug);
+
+  if (!experience) {
+    notFound();
+  }
+
+  const whatsappLink = `https://wa.me/201000000000?text=${encodeURIComponent(
+    `I want to plan my ${experience.title} journey with Syren`
+  )}`;
+
+  return (
+    <main className="min-h-screen bg-background">
+      {/* 1. Cinematic Hero Section */}
+      <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
+        <Image
+          src={experience.heroImage}
+          alt={experience.title}
+          fill
+          priority
+          sizes="100vw"
+          placeholder="blur"
+          className="object-cover object-center brightness-[0.55]"
+        />
+        {/* Cinematic Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60" />
+        
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+          <Reveal>
+            <h1 className="mb-6 max-w-5xl font-serif text-5xl tracking-tight text-primary md:text-7xl lg:text-8xl">
+              {experience.title}
+            </h1>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <div className="flex flex-col items-center gap-4 md:flex-row md:gap-6">
+              <span className="font-sans text-sm uppercase tracking-[0.3em] text-white/60 font-medium md:text-base">
+                {experience.duration}
+              </span>
+              <div className="hidden h-px w-8 bg-white/30 md:block" />
+              <span className="font-sans text-sm uppercase tracking-[0.3em] text-white/90 font-light md:text-base">
+                {experience.cities}
+              </span>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* 2. Introduction Section */}
+      <section className="mx-auto max-w-4xl px-6 text-center py-20 md:py-28">
+        <Reveal>
+          <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-4 block">The Soul of the Journey</span>
+          <h2 className="mb-8 font-serif text-3xl tracking-tight text-primary md:text-4xl">
+            Experience Overview
+          </h2>
+          <p className="mx-auto max-w-3xl font-sans text-lg leading-relaxed tracking-wide text-text-secondary md:text-xl md:leading-loose italic">
+            &ldquo;{experience.introduction}&rdquo;
+          </p>
+          <div className="mx-auto mt-12 h-px w-24 bg-accent-gold/30" />
+        </Reveal>
+      </section>
+
+      {/* 3. Key Experience Highlights */}
+      {experience.highlights && (
+        <section className="bg-surface py-16 border-y border-white/5">
+          <div className="mx-auto max-w-6xl px-6 md:px-8">
+            <Reveal>
+              <div className="mb-12 text-center">
+                <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-4 block">The Distinction</span>
+                <h2 className="font-serif text-3xl tracking-tight text-primary">Curated Highlights</h2>
+              </div>
+            </Reveal>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {experience.highlights.map((highlight, idx) => (
+                <Reveal key={idx} delay={0.1 * idx}>
+                  <div className="p-6 border border-white/5 bg-background/50 hover:border-accent-gold/20 transition-colors duration-500 group h-full">
+                    <div className="mb-3 text-accent-gold/40 group-hover:text-accent-gold transition-colors duration-500">
+                      <Sparkles size={10} strokeWidth={1} />
+                    </div>
+                    <p className="font-serif text-lg text-text-primary leading-snug">
+                      {highlight}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 4. Itinerary (day by day) */}
+      <section className="bg-surface py-16 md:py-24">
+        <div className="mx-auto max-w-5xl px-6 md:px-8">
+          <div className="space-y-16 md:space-y-20">
+            {experience.itinerary.map((item, index) => (
+              <Reveal key={item.day} delay={0.1 * index}>
+                <div className={`grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16 items-center ${index % 2 !== 0 ? 'lg:direction-rtl' : ''}`}>
+                  <div className={`${index % 2 !== 0 ? 'lg:order-2' : ''}`}>
+                    <div className="flex items-center gap-4 mb-6">
+                      <span className="font-serif text-4xl font-light text-accent-gold">
+                        Day {item.day}
+                      </span>
+                      <div className="h-px flex-1 bg-accent-gold/20" />
+                    </div>
+                    <h3 className="mb-6 font-serif text-3xl tracking-tight text-text-primary">
+                      {item.title}
+                    </h3>
+                    <p className="font-sans text-base leading-relaxed text-text-secondary md:text-lg">
+                      {item.description}
+                    </p>
+                    {item.meals && (
+                      <div className="mt-8 flex items-center gap-2 border-t border-white/5 pt-6">
+                        <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-accent-gold/60">Included Meals:</span>
+                        <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-text-secondary/60">{item.meals}</span>
+                      </div>
+                    )}
+                  </div>
+                  
+                  <div className={`relative aspect-[4/3] w-full overflow-hidden rounded-sm shadow-2xl ${index % 2 !== 0 ? 'lg:order-1' : ''}`}>
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover transition-transform duration-700 hover:scale-105"
+                      sizes="(min-width: 1024px) 40vw, 100vw"
+                    />
+                    <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors duration-500" />
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. What’s Included / Not Included */}
+      <section className="bg-surface py-20 md:py-28 border-t border-white/5">
+        <div className="mx-auto max-w-5xl px-6 md:px-8">
+          <Reveal>
+            <div className="rounded-2xl border border-white/5 bg-background/30 p-8 md:p-16 shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent-gold/20 to-transparent" />
+              <h2 className="mb-16 text-center font-serif text-3xl tracking-tight text-primary md:text-4xl">
+                The Logistics
+              </h2>
+              
+              <div className="grid gap-16 md:grid-cols-2">
+                <div className="space-y-8">
+                  <h3 className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-accent-gold flex items-center gap-3">
+                    <div className="h-px w-4 bg-accent-gold/40" />
+                    Included
+                  </h3>
+                  <ul className="space-y-4">
+                    {experience.included.map((item, i) => (
+                      <li key={i} className="flex items-start gap-4">
+                        <CheckCircle2 size={16} className="mt-1 text-accent-gold/60 shrink-0" />
+                        <span className="font-sans text-sm text-text-secondary leading-relaxed">
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {experience.notIncluded && (
+                  <div className="space-y-8">
+                    <h3 className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-text-secondary/40 flex items-center gap-3">
+                      <div className="h-px w-4 bg-text-secondary/20" />
+                      Not Included
+                    </h3>
+                    <ul className="space-y-4">
+                      {experience.notIncluded.map((item, i) => (
+                        <li key={i} className="flex items-start gap-4 opacity-50">
+                          <div className="mt-2 h-1 w-1 rounded-full bg-text-secondary shrink-0" />
+                          <span className="font-sans text-sm text-text-secondary leading-relaxed">
+                            {item}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* 6. Testimonials (experience-specific) */}
+      <section className="py-20 md:py-28 bg-background">
+        <div className="mx-auto max-w-7xl px-6 md:px-8">
+          <Reveal>
+            <div className="mb-16 text-center">
+              <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-4 block">The Testimony</span>
+              <h2 className="font-serif text-4xl tracking-tight text-primary">Traveler Stories</h2>
+            </div>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Placeholder for now - could be fetched from API filtered by experience */}
+            {[1, 2].map((i) => (
+              <Reveal key={i} delay={0.2 * i}>
+                <div className="p-10 border border-white/5 bg-surface/30 relative">
+                  <div className="flex gap-1 mb-6">
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <Star key={s} size={12} className="fill-accent-gold text-accent-gold" />
+                    ))}
+                  </div>
+                  <p className="font-serif text-xl text-white italic mb-8 leading-relaxed">
+                    &ldquo;The level of personalization was beyond anything we expected. Syren truly opened doors to an Egypt we wouldn&apos;t have found on our own.&rdquo;
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <div className="h-px w-8 bg-accent-gold/30" />
+                    <div>
+                      <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-accent-gold font-bold">Anonymous Traveler</p>
+                      <p className="font-sans text-[8px] uppercase tracking-[0.2em] text-white/40">Verified Journey</p>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Soft Conversion Section (inquiry / interest) */}
+      <section className="relative overflow-hidden bg-surface py-20 md:py-28 border-y border-white/5">
+        <div className="relative mx-auto max-w-4xl px-6 text-center">
+          <Reveal>
+            <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-6 block">Personal Curation</span>
+            <h2 className="mb-8 font-serif text-4xl leading-tight text-text-primary md:text-5xl">
+              Ready to Personalize This Experience?
+            </h2>
+            <p className="mx-auto mb-12 max-w-2xl font-sans text-lg text-text-secondary md:text-xl leading-relaxed">
+              Every journey we create is unique. Message our master curators to adjust this itinerary to your specific pace and interests.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="syren-btn flex items-center gap-3 w-full sm:w-auto"
+              >
+                <MessageSquare size={18} />
+                INQUIRE VIA WHATSAPP
+              </a>
+              <button className="syren-btn-secondary flex items-center gap-3 w-full sm:w-auto">
+                <ArrowRight size={18} />
+                REQUEST CUSTOM QUOTE
+              </button>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* 8. Stripe Payment Readiness */}
+      <section className="py-20 md:py-32 bg-background relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-gold rounded-full blur-[120px]" />
+        </div>
+        
+        <div className="mx-auto max-w-3xl px-6">
+          <Reveal>
+            <div className="p-8 md:p-16 border border-accent-gold/20 bg-surface/50 backdrop-blur-sm relative shadow-2xl">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-background border border-accent-gold/20 px-6 py-2">
+                <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold font-bold">Secure Booking</span>
+              </div>
+              
+              <div className="text-center mb-12">
+                <h2 className="font-serif text-3xl text-primary mb-4">Finalize Your Reservation</h2>
+                <div className="flex items-center justify-center gap-3 text-text-secondary/60">
+                  <ShieldCheck size={16} />
+                  <span className="font-sans text-[10px] uppercase tracking-[0.2em]">Secured by Stripe</span>
+                </div>
+              </div>
+
+              <div className="space-y-8">
+                <div className="flex justify-between items-end border-b border-white/10 pb-6">
+                  <div>
+                    <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-text-secondary/40 mb-1">Estimated Price</p>
+                    <p className="font-serif text-4xl text-accent-gold">
+                      ${experience.price?.amount.toLocaleString()}
+                      <span className="text-sm font-sans text-text-secondary/40 ml-2 uppercase tracking-widest font-normal">
+                        {experience.price?.currency} {experience.price?.perPerson ? "/ Person" : ""}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 size={14} className="text-accent-gold mt-1" />
+                    <p className="font-sans text-[10px] text-text-secondary/60 uppercase tracking-[0.1em] leading-relaxed">Fully refundable up to 30 days before arrival</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 size={14} className="text-accent-gold mt-1" />
+                    <p className="font-sans text-[10px] text-text-secondary/60 uppercase tracking-[0.1em] leading-relaxed">Secure credit card & bank transfer options</p>
+                  </div>
+                </div>
+
+                <button className="syren-btn w-full py-6 flex items-center justify-center gap-4 group">
+                  <CreditCard size={20} />
+                  PROCEED TO SECURE BOOKING
+                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                </button>
+                
+                <p className="text-center font-sans text-[9px] uppercase tracking-[0.2em] text-text-secondary/30">
+                  By proceeding, you agree to our <a href="#" className="underline hover:text-accent-gold transition-colors">Terms of Service</a> and <a href="#" className="underline hover:text-accent-gold transition-colors">Privacy Policy</a>.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+    </main>
+  );
+}

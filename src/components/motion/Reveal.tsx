@@ -8,6 +8,7 @@ interface RevealProps {
   delay?: number;
   duration?: number;
   y?: number;
+  x?: number;
   className?: string;
 }
 
@@ -16,12 +17,13 @@ export default function Reveal({
   delay = 0, 
   duration = 0.6, 
   y = 30,
+  x = 0,
   className = ""
 }: RevealProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y, x }}
+      whileInView={{ opacity: 1, y: 0, x: 0 }}
       viewport={{ once: true, margin: "-10% 0px" }}
       className={className}
       transition={{
